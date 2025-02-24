@@ -3,8 +3,8 @@ import { Mic } from "lucide-react"
 const voiceCommands = [
   "Find startups founded in 2024",
   "Show healthcare startups in pre-seed stage",
-  "List YC 2024 startups in construction",
-  "Search for AI startups in Europe with female founders",
+  "Get Comphrehensive information on crustdata.com",
+  "Get funding information or employee by region on abridge.com",
   "Display fintech startups that raised Series A in the last 6 months",
   "Find sustainable energy startups in emerging markets",
   "Healthcare startup which are using AI",
