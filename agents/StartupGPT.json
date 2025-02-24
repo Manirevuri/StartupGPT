@@ -1,0 +1,217 @@
+{
+    "agent_id": "ZwXB4iiXmGscaZjIeN3L",
+    "name": "StartupGPT agent",
+    "conversation_config": {
+        "agent": {
+            "prompt": {
+                "prompt": "Example: I want to find early-stage startups in [sector or industry] that meet specific investment criteria.  \nEach startup should be innovative, have strong technical or industry-experienced founders, and be in its early stages (pre-seed to Series A).  \nFor each startup, return the name, location, founders (including their full names), website, industry, and funding details.  \nLimit results to 5 startups.  \nEnsure the information is accurate, up to date, and sourced from reputable databases like Crunchbase, PitchBook, or company websites.  \n\nFor context: I am a venture capitalist or angel investor looking to explore opportunities in [sector or industry]. I’m particularly interested in startups solving [specific problem or innovation area]. I’ve already researched well-known companies like [example companies], so I am looking for under-the-radar, high-potential teams. If a startup has recently raised funding, I’d love to know who the lead investors are.  \n\nWhen user starts talking please stop and listen to them, Whenever you get information from tools, don't recite everything only say the gist and ask the user if they want to know more.\n\nAdditionally, as StartupGPT, you are a friendly and enthusiastic VC and angel investor assistant. You should provide information naturally and concisely. Since you are a voice-based assistant, always be polite, precise, and maintain brevity. When providing URLs, spell them out fully rather than abbreviating them.  \n\nYou have the following tools at your disposal:  \n\n1. For general startup searches, such as “early-stage AI startups working on generative models with at least $500K in funding” or “Find startups founded in 2025”, use the getQueryResults tool and pass the query to it.  \n2. For specific startup details, such as total funding raised, latest funding stage, last funding date, number of funding rounds, funding stages, employee count by country, or LinkedIn profile, use the getCompanyInfo tool and pass the startup website URL to it.  \n3. For comprehensive company insights, including mission, features, competitors, partnerships, funding, press mentions, and investment opportunities, use the getWebsiteInfo tool and pass the startup website URL to it.  \n4. When investor asks you to schedule a meet with founders, use the sendEmail tool to send an email to founders.\n\nBefore calling any tools, inform the investor that you will be using internal tools and that it may take some time to retrieve the data.",
+                "llm": "gpt-4o",
+                "temperature": 0.35,
+                "max_tokens": -1,
+                "tools": [
+                    {
+                        "type": "client",
+                        "name": "sendEmail",
+                        "description": "Use this tool to send an email requesting for availability.",
+                        "parameters": null,
+                        "expects_response": true,
+                        "response_timeout_secs": 30
+                    },
+                    {
+                        "type": "client",
+                        "name": "getWebsiteInfo",
+                        "description": "Use this tool to get comprehensive company insights, including mission, features, competitors, partnerships, funding, press mentions, and investment opportunities",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "company_website": {
+                                    "type": "string",
+                                    "description": "This is the startup's website url",
+                                    "dynamic_variable": ""
+                                }
+                            },
+                            "required": [
+                                "company_website"
+                            ],
+                            "description": ""
+                        },
+                        "expects_response": true,
+                        "response_timeout_secs": 30
+                    },
+                    {
+                        "type": "client",
+                        "name": "getCompanyInfo",
+                        "description": "Use this tool when user asks about startups information like employee by country, linkedin profile, \"total_funding_raised\", \"latest_funding_stage\", \"last_funding_date\": \"2021-06-10\", \"number_funding_rounds\", \"funding_stages\"",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "company_website": {
+                                    "type": "string",
+                                    "description": "This is the startup's website url",
+                                    "dynamic_variable": ""
+                                }
+                            },
+                            "required": [
+                                "company_website"
+                            ],
+                            "description": ""
+                        },
+                        "expects_response": true,
+                        "response_timeout_secs": 30
+                    },
+                    {
+                        "type": "client",
+                        "name": "getQueryResults",
+                        "description": "Use this tool when customer asks generalized questions related to startups like [\"Find startups founded in 2024\",\n  \"Show healthcare startups in pre-seed stage\",\n  \"List YC 2024 startups in construction\",\n  \"Search for AI startups in Europe with female founders\"]",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "query": {
+                                    "type": "string",
+                                    "description": "The query asked by the user",
+                                    "dynamic_variable": ""
+                                }
+                            },
+                            "required": [
+                                "query"
+                            ],
+                            "description": ""
+                        },
+                        "expects_response": true,
+                        "response_timeout_secs": 30
+                    },
+                    {
+                        "type": "system",
+                        "name": "end_call",
+                        "description": ""
+                    }
+                ],
+                "tool_ids": [
+                    "lSptWDrepd4MqvZhBvRC",
+                    "ZiCPFMsJIcLZy0YJ8xGI",
+                    "5KsMhUmNTNj8WLwxHkVT",
+                    "RGOgaXRGts47Zmi9dODq",
+                    "zLFjIO77Loi2vVSEMBcu"
+                ],
+                "knowledge_base": [],
+                "knowledge_base_document_ids": [],
+                "custom_llm": null
+            },
+            "first_message": "Hi, I'm StartupGPT. How can I help you with your scouting needs?",
+            "language": "en",
+            "dynamic_variables": {
+                "dynamic_variable_placeholders": {}
+            }
+        },
+        "asr": {
+            "quality": "high",
+            "provider": "elevenlabs",
+            "user_input_audio_format": "pcm_16000",
+            "keywords": []
+        },
+        "turn": {
+            "turn_timeout": 15.0,
+            "mode": "turn"
+        },
+        "tts": {
+            "model_id": "eleven_flash_v2",
+            "voice_id": "cgSgspJ2msm6clMCkdW9",
+            "agent_output_audio_format": "pcm_16000",
+            "optimize_streaming_latency": 4,
+            "stability": 0.5,
+            "similarity_boost": 0.8,
+            "pronunciation_dictionary_locators": []
+        },
+        "conversation": {
+            "max_duration_seconds": 300,
+            "client_events": [
+                "audio",
+                "interruption",
+                "user_transcript",
+                "agent_response",
+                "agent_response_correction"
+            ]
+        },
+        "language_presets": {}
+    },
+    "metadata": {
+        "created_at_unix_secs": 1740200909
+    },
+    "platform_settings": {
+        "auth": {
+            "enable_auth": false,
+            "allowlist": [],
+            "shareable_token": null
+        },
+        "evaluation": {
+            "criteria": []
+        },
+        "widget": {
+            "variant": "full",
+            "expandable": "never",
+            "avatar": {
+                "type": "orb",
+                "color_1": "#6DB035",
+                "color_2": "#F5CABB"
+            },
+            "feedback_mode": "during",
+            "bg_color": "#ffffff",
+            "text_color": "#000000",
+            "btn_color": "#000000",
+            "btn_text_color": "#ffffff",
+            "border_color": "#e1e1e1",
+            "focus_color": "#000000",
+            "border_radius": null,
+            "btn_radius": null,
+            "action_text": null,
+            "start_call_text": null,
+            "end_call_text": null,
+            "expand_text": null,
+            "listening_text": null,
+            "speaking_text": null,
+            "shareable_page_text": null,
+            "terms_text": "#### Terms and conditions\n\nBy clicking \"Agree,\" and each time I interact with this AI agent, I consent to the recording, storage, and sharing of my communications with third-party service providers, and as described in the Privacy Policy.\nIf you do not wish to have your conversations recorded, please refrain from using this service.",
+            "terms_html": "<h4>Terms and conditions</h4>\n<p>By clicking &quot;Agree,&quot; and each time I interact with this AI agent, I consent to the recording, storage, and sharing of my communications with third-party service providers, and as described in the Privacy Policy.\nIf you do not wish to have your conversations recorded, please refrain from using this service.</p>\n",
+            "terms_key": null,
+            "show_avatar_when_collapsed": true,
+            "disable_banner": false,
+            "language_selector": false,
+            "custom_avatar_path": null
+        },
+        "data_collection": {},
+        "overrides": {
+            "conversation_config_override": {
+                "agent": {
+                    "prompt": {
+                        "prompt": false
+                    },
+                    "first_message": false,
+                    "language": false
+                },
+                "tts": {
+                    "voice_id": false
+                }
+            },
+            "custom_llm_extra_body": false,
+            "enable_conversation_initiation_client_data_from_webhook": false
+        },
+        "call_limits": {
+            "agent_concurrency_limit": -1,
+            "daily_limit": 100000
+        },
+        "ban": null,
+        "privacy": {
+            "record_voice": true,
+            "retention_days": 730,
+            "delete_transcript_and_pii": true,
+            "delete_audio": true,
+            "apply_to_existing_conversations": false
+        },
+        "safety": {
+            "is_blocked_ivc": false,
+            "is_blocked_non_ivc": false
+        }
+    },
+    "secrets": [],
+    "phone_numbers": []
+}
