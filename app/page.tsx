@@ -18,9 +18,6 @@ export default function LandingPage() {
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#how-it-works">
             How It Works
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#contact">
-            Contact
-          </Link>
         </nav>
       </header>
       <main className="flex-1">
