@@ -1,4 +1,4 @@
-## Conversational AI Demo
+## StartupGPT Demo
 
 ## Setup
 
@@ -8,7 +8,7 @@ Set up the environment variables:
 cp .env.example .env
 ```
 
-Follow [this guide](https://elevenlabs.io/docs/conversational-ai/docs/agent-setup) to configure your agent and get your API key and set them in the `.env` file.
+Provide all the specified keys as they are being used by different Agent Tools
 
 Run the development server:
 
@@ -21,8 +21,3 @@ pnpm dev
 # or
 bun dev
 ```
-
-## Learn More
-
-- [Conversational AI Tutorial](https://elevenlabs.io/docs/product/introduction)
-- [Conversational AI SDK](https://elevenlabs.io/docs/libraries/conversational-ai-sdk-js)
